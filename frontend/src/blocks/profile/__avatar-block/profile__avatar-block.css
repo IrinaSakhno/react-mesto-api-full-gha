@@ -1,0 +1,5 @@
+.profile__avatar-block {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}

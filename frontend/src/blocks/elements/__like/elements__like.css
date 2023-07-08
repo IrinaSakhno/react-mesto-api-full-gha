@@ -1,0 +1,11 @@
+.elements__like {
+  display: flex;
+  width: 22px;
+  height: 19px;
+
+  border: none;
+  cursor: pointer;
+  background-color: #ffffff;
+  background-image: url(../../../images/like.svg);
+  background-size: contain;
+}

@@ -1,0 +1,9 @@
+.elements__item {
+  display: flex;
+  flex-direction: column;
+  max-width: 282px;
+  min-height: 361px;
+  background-color: #000000;
+  margin: 0;
+  position: relative;
+}

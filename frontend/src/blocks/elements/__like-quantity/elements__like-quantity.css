@@ -1,0 +1,10 @@
+.elements__like-quantity {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.23;
+    text-align: center;
+    color: #000000;
+    display: flex;
+    margin-top: 3px;
+}

@@ -1,0 +1,17 @@
+.elements__gallery {
+  list-style-type: none;
+  padding-inline-start: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 282px);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 17px;
+  grid-row-gap: 20px;
+  margin: 0;
+}
+
+@media screen and (max-width: 896px) {
+  .elements__gallery {
+    grid-template-columns: repeat(1, 282px);
+    grid-template-rows: repeat(6, 1fr);
+  }
+}

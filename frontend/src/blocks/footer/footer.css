@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  justify-content: flex-start;
+  margin: 66px auto 60px;
+  max-width: 880px;
+}
+
+@media screen and (max-width: 896px) {
+  .footer {
+    max-width: 282px;
+    margin-top: 48px;
+    margin-bottom: 36px;
+  }
+}
