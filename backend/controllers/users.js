@@ -36,7 +36,7 @@ const getCurrentUser = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('User not found');
       }
-      return res.send(...user);
+      return res.status(200).send({ data: user.toJSON() });
     })
     .catch(next);
 };
@@ -48,7 +48,7 @@ const createUser = (req, res, next) => {
         ...req.body, password: hashedPassword,
       })
         .then((user) => {
-          res.send({ data: user });
+          res.status(201).send({ data: user });
         })
         .catch((err) => {
           if (err.name === 'ValidationError') {
@@ -83,7 +83,7 @@ const login = (req, res, next) => {
               httpOnly: true,
               sameSite: true,
             });
-            res.send({ data: user.toJSON() });
+            res.status(200).send({ data: user.toJSON() });
           } else {
             next(new ValidationError('Wrong user data'));
           }

@@ -40,7 +40,7 @@ const deleteCard = (req, res, next) => {
           throw new NotFoundError('card not found');
         })
         .then(() => {
-          res.send({ message: 'успешно' });
+          res.status(200).send({ message: 'успешно' });
         })
         .catch((err) => next(err));
     })
@@ -55,7 +55,7 @@ const likeCard = (req, res, next) => {
   )
     .orFail(() => new NotFoundError('card not found'))
     .then(() => {
-      res.send({ message: 'I like it!' });
+      res.status(200).send({ message: 'I like it!' });
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -73,7 +73,7 @@ const dislikeCard = (req, res, next) => {
   )
     .orFail(() => new NotFoundError('card not found'))
     .then(() => {
-      res.send({ message: 'Like was successfully removed' });
+      res.status(200).send({ message: 'Like was successfully removed' });
     })
     .catch((err) => {
       if (err.name === 'CastError') {
