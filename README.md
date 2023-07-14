@@ -7,7 +7,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.98.28
+IP-адрес 158.160.37.43
 
 Frontend https://irina-sakhno.students.nomoreparties.sbs/
 
