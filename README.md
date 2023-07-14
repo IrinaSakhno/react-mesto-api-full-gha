@@ -7,8 +7,8 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.37.43
+1. IP 158.160.117.37
 
-Frontend https://irina-sakhno.students.nomoreparties.sbs/
+1. Frontend https://irina-sakhno.students.nomoreparties.sbs/
 
-Backend https://api.irina-sakhno.students.nomoreparties.sbs/
+3. Backend https://api.irina-sakhno.students.nomoreparties.sbs/
