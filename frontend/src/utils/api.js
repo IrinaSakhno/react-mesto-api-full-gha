@@ -104,7 +104,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-62",
+  baseUrl: "https://api.irina-sakhno.students.nomoreparties.sbs",
   headers: {
     authorization: "e039fbc5-c9a5-4fc5-afa9-2046730c027f",
     contentType: "application/json",

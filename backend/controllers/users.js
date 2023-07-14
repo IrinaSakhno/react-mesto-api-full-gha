@@ -77,7 +77,7 @@ const login = (req, res, next) => {
           if (isValidUser) {
             const jwt = jsonWebToken.sign({
               _id: user._id,
-            }, process.env.JWT_SECRET);
+            }, process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : 'dev-secret');
             res.cookie('jwt', jwt, {
               maxAge: 360000,
               httpOnly: true,
