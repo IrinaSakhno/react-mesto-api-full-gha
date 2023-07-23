@@ -7,8 +7,6 @@ const auth = require('../middlewares/auth');
 const regexUrl = require('../utils/regexUrl');
 const { NotFoundError } = require('../middlewares/error');
 
-router.all('*', express.json());
-
 router.post(
   '/signup',
   celebrate({
@@ -38,7 +36,7 @@ router.use(auth);
 router.use('/users', userRoutes);
 router.use('/cards', cardRoutes);
 
-router.all('*', (req, res, next) => {
+router.use('*', (req, res, next) => {
   next(new NotFoundError('This page does not exist'));
 });
 
