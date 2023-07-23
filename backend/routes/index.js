@@ -31,10 +31,10 @@ router.post(
   login,
 );
 
-router.use(auth);
+// router.use(auth);
 
-router.use('/users', userRoutes);
-router.use('/cards', cardRoutes);
+router.use('/users', auth, userRoutes);
+router.use('/cards', auth, cardRoutes);
 
 router.use((req, res, next) => {
   next(new NotFoundError('This page does not exist'));
