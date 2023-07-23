@@ -38,7 +38,7 @@ class Api {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: this.apiToken,
+        // authorization: this.apiToken,
         "Content-Type": this.contentType,
       },
       body: JSON.stringify({
@@ -104,10 +104,12 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://api.irina-sakhno.students.nomoreparties.sbs",
+  // baseUrl: "https://api.irina-sakhno.students.nomoreparties.sbs",
+  baseUrl: "http://localhost:3000",
   headers: {
-    authorization: "e039fbc5-c9a5-4fc5-afa9-2046730c027f",
+    // authorization: "e039fbc5-c9a5-4fc5-afa9-2046730c027f",
     contentType: "application/json",
+    authorization: `Bearer ${localStorage.getItem("jwt")}`
   },
 });
 

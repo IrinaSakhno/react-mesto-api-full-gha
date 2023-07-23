@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const jsonWebToken = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const {
   ConflictError,
@@ -75,13 +75,15 @@ const login = (req, res, next) => {
       bcrypt.compare(String(password), user.password)
         .then((isValidUser) => {
           if (isValidUser) {
-            const jwt = jsonWebToken.sign({
+            const token = jwt.sign({
               _id: user._id,
             }, process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : 'dev-secret');
-            res.cookie('jwt', jwt, {
-              maxAge: 360000,
+            console.log(token);
+            res.cookie('jwt', token, {
+              maxAge: 3600000 * 24 * 7,
               httpOnly: true,
-              sameSite: true,
+              sameSite: 'none',
+              secure: true,
             });
             res.status(200).send({ data: user.toJSON() });
           } else {
@@ -90,6 +92,20 @@ const login = (req, res, next) => {
         })
         .catch(next);
     })
+  // return User.findUserByCredentials(email, password)
+  //   .then((user) => {
+  //     const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
+  //       expiresIn: '7d',
+  //     });
+  //     res
+  //       .cookie('jwt', token, {
+  //         maxAge: 3600000 * 24 * 7,
+  //         httpOnly: true,
+  //         sameSite: 'none',
+  //         secure: true,
+  //       })
+  //       .send({ message: 'User successfully logged in' });
+  //   })
     .catch(next);
 };
 
