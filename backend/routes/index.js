@@ -7,6 +7,8 @@ const auth = require('../middlewares/auth');
 const regexUrl = require('../utils/regexUrl');
 const { NotFoundError } = require('../middlewares/error');
 
+router.all('*', express.json());
+
 router.post(
   '/signup',
   celebrate({

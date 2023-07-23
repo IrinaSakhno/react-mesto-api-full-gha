@@ -19,6 +19,7 @@ class NotFoundError extends Error {
     this.statusCode = 404;
   }
 }
+
 class UnauthorizedError extends Error {
   constructor(message) {
     super(message);
