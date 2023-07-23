@@ -36,7 +36,7 @@ router.use(auth);
 router.use('/users', userRoutes);
 router.use('/cards', cardRoutes);
 
-router.use('*', (req, res, next) => {
+router.use((req, res, next) => {
   next(new NotFoundError('This page does not exist'));
 });
 
