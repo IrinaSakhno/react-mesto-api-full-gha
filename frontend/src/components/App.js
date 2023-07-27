@@ -54,7 +54,7 @@ function App() {
         setCards(res);
       })
       .catch(console.error);
-  }, []);
+  }, [isLoggedIn]);
 
   // Changing/updating data functions:
 
