@@ -16,7 +16,10 @@ class Api {
   getProfile() {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "GET",
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
     }).then((res) => {
       return this._getResponseData(res);
     });
@@ -25,7 +28,10 @@ class Api {
   getInitialCards() {
     return fetch(`${this.baseUrl}/cards`, {
       method: "GET",
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
     }).then((res) => {
       return this._getResponseData(res);
     });
@@ -34,7 +40,10 @@ class Api {
   editProfile({ name, about }) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
       body: JSON.stringify({
         name: name,
         about: about,
@@ -47,7 +56,10 @@ class Api {
   addNewCard({ name, link }) {
     return fetch(`${this.baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
       body: JSON.stringify({
         name: name,
         link: link,
@@ -60,7 +72,10 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
     }).then((res) => {
       return this._getResponseData(res);
     });
@@ -69,7 +84,10 @@ class Api {
   changeAvatar(avatar) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
       body: JSON.stringify({
         avatar: avatar,
       }),
@@ -81,7 +99,10 @@ class Api {
   changeLikeCardStatus(cardId, likeStatus) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: `${likeStatus ? "DELETE" : "PUT"}`,
-      headers: this._headers,
+      headers: {
+        ...this._headers,
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
     }).then((res) => {
       return this._getResponseData(res);
     });
@@ -90,10 +111,9 @@ class Api {
 
 const api = new Api({
   baseUrl: "https://api.irina-sakhno.students.nomoreparties.sbs",
-  // baseUrl: "http://localhost:3001",
+  // baseUrl: "http://localhost:3000",
   headers: {
     'Content-Type': "application/json",
-    authorization: `Bearer ${localStorage.getItem('token')}`
   },
 });
 
