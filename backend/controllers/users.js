@@ -30,13 +30,12 @@ const getUserById = (req, res, next) => {
 };
 
 const getCurrentUser = (req, res, next) => {
-  const { _id } = req.user;
-  User.find({ _id })
+  User.findById(req.user._id)
     .then((user) => {
       if (!user) {
         throw new NotFoundError('User not found');
       }
-      return res.status(200).send({ data: user.toJSON() });
+      return res.status(200).send(user);
     })
     .catch(next);
 };
@@ -78,35 +77,22 @@ const login = (req, res, next) => {
             const token = jwt.sign({
               _id: user._id,
             }, process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : 'dev-secret');
-            console.log(token);
-            res.cookie('jwt', token, {
+            res.cookie('token', token, {
               maxAge: 3600000 * 24 * 7,
               httpOnly: true,
               sameSite: 'none',
               secure: true,
             });
-            res.status(200).send({ data: user.toJSON() });
+            res.status(200).send({ data: user.toJSON(), token });
           } else {
             next(new ValidationError('Wrong user data'));
           }
         })
         .catch(next);
     })
-  // return User.findUserByCredentials(email, password)
-  //   .then((user) => {
-  //     const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
-  //       expiresIn: '7d',
-  //     });
-  //     res
-  //       .cookie('jwt', token, {
-  //         maxAge: 3600000 * 24 * 7,
-  //         httpOnly: true,
-  //         sameSite: 'none',
-  //         secure: true,
-  //       })
-  //       .send({ message: 'User successfully logged in' });
-  //   })
-    .catch(next);
+    .catch((err) => {
+      next(err);
+    });
 };
 
 const updateProfile = (req, res, next) => {

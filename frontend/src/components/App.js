@@ -97,12 +97,12 @@ function App() {
   };
 
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     api
       .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
         setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
+        state.map((c) => (c._id === card._id ? newCard : c))
         );
       })
       .catch(console.error);
@@ -196,7 +196,7 @@ function App() {
       auth
         .checkToken(token)
         .then((res) => {
-          setEmail(res.data.email);
+          setEmail(res.email);
           setIsLoggedIn(true);
           navigate("/");
         })
@@ -215,7 +215,6 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err);
         setIsInfoTooltipSuccessful({
           isOpen: true,
           isSuccessful: false,

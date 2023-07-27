@@ -10,16 +10,13 @@ class Api {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`);
+    return Promise.reject(`Ошибка: ${res.status} ${res.message}` );
   }
 
   getProfile() {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "GET",
-      headers: {
-        authorization: this.apiToken,
-        "Content-Type": this.contentType,
-      },
+      headers: this._headers,
     }).then((res) => {
       return this._getResponseData(res);
     });
@@ -37,10 +34,7 @@ class Api {
   editProfile({ name, about }) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
-      headers: {
-        // authorization: this.apiToken,
-        "Content-Type": this.contentType,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: name,
         about: about,
@@ -53,10 +47,7 @@ class Api {
   addNewCard({ name, link }) {
     return fetch(`${this.baseUrl}/cards`, {
       method: "POST",
-      headers: {
-        authorization: this.apiToken,
-        "Content-Type": this.contentType,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: name,
         link: link,
@@ -69,10 +60,7 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: {
-        authorization: this.apiToken,
-        "Content-Type": this.contentType,
-      },
+      headers: this._headers,
     }).then((res) => {
       return this._getResponseData(res);
     });
@@ -81,10 +69,7 @@ class Api {
   changeAvatar(avatar) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: {
-        authorization: this.apiToken,
-        "Content-Type": this.contentType,
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: avatar,
       }),
@@ -104,12 +89,11 @@ class Api {
 }
 
 const api = new Api({
-  // baseUrl: "https://api.irina-sakhno.students.nomoreparties.sbs",
-  baseUrl: "http://localhost:3000",
+  baseUrl: "https://api.irina-sakhno.students.nomoreparties.sbs",
+  // baseUrl: "http://localhost:3001",
   headers: {
-    // authorization: "e039fbc5-c9a5-4fc5-afa9-2046730c027f",
-    contentType: "application/json",
-    authorization: `Bearer ${localStorage.getItem("jwt")}`
+    'Content-Type': "application/json",
+    authorization: `Bearer ${localStorage.getItem('token')}`
   },
 });
 

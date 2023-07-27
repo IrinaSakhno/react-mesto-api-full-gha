@@ -7,7 +7,7 @@ class Auth {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`);
+    return Promise.reject(`Ошибка: ${res.status} ${JSON.stringify(res)}` );
   }
 
   registerNewUser = ({ email, password }) => {
@@ -38,15 +38,15 @@ class Auth {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
     }).then(this._getResponseData);
   };
 }
 
 const auth = new Auth({
-    // baseUrl: "https://api.irina-sakhno.students.nomoreparties.sbs",
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://api.irina-sakhno.students.nomoreparties.sbs",
+    // baseUrl: "http://localhost:3001",
 });
 
 export default auth;

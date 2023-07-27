@@ -1,9 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const helmet = require('helmet');
 const { errors } = require('celebrate');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const router = require('./routes');
@@ -11,7 +9,7 @@ const { errorHandler } = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { corsHandler } = require('./middlewares/cors');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 
 const app = express();
 app.use(helmet());

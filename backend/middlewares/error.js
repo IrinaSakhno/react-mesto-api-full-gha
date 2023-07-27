@@ -36,7 +36,6 @@ class ValidationError extends Error {
 const errorHandler = (err, req, res, next) => {
   const { statusCode = 500 } = err;
   let { message } = err;
-
   if (statusCode === 500) {
     message = 'Internal server error has occured';
   }

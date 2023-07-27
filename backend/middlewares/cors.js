@@ -1,7 +1,7 @@
 const allowedCors = [
   'https://irina-sakhno.students.nomoreparties.sbs',
   'http://irina-sakhno.students.nomoreparties.sbs',
-  'http://localhost:3001',
+  'http://localhost:3000',
 ];
 
 const corsHandler = (req, res, next) => {
